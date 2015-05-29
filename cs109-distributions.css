@@ -1,0 +1,44 @@
+html,
+body,
+#main-wrapper {
+    height: 100%;
+}
+
+body {
+    font-size: 16px;
+    background-color: #CC2233;
+}
+
+#main-wrapper {
+    background-color: #fff;
+}
+
+@media (min-width: 768px) {
+    #main-wrapper {
+      width: 614px;
+    }
+}
+
+@media (min-width: 992px) {
+    #main-wrapper {
+      width: 794px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #main-wrapper {
+      width: 960px;
+    }
+}
+
+#distribution-form {
+    margin-bottom: 30px;
+}
+
+#results {
+    display: none;
+}
+
+#results > dl {
+    margin: 0;
+}
