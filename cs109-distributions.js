@@ -1,12 +1,23 @@
 $(function(){
     $("#distribution-form").submit(function(){
         var parameters = +$("#parameters").val();
+        
         if (isNaN(parameters)) {
-            $("#results").html("<p>Could not interpret your input.</p>");
+            $("#results").html("<p>Could not interpret your input</p>");
         } else {
-            $("#results").html("<dl><dt>Expected Value</dt><dd>" + parameters + "</dd></dl>");
+            var expectedValue = parameters;
+            var variance = parameters * (1 - parameters);
+            
+            $("#results").html("<dl class='dl-horizontal'>" +
+                "<dt>Expected Value</dt>" +
+                "<dd>" + expectedValue + "</dd>" +
+                "<dt>Variance</dt>" +
+                "<dd>" + variance + "</dd>" +
+            "</dl>");
         }
+        
         $("#results").show();
+        
         return false;
     });
 });

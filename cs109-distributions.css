@@ -42,3 +42,11 @@ body {
 #results > dl {
     margin: 0;
 }
+
+#results dt {
+    width: 50%;
+}
+
+#results dd {
+    margin-left: 55%;
+}
