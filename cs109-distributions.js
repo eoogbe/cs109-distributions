@@ -1,23 +1,11 @@
 $(function(){
-    $("#distribution-form").submit(function(){
-        var parameters = +$("#parameters").val();
+    $("#distribution-form").submit(function(e){
+        e.preventDefault();
         
-        if (isNaN(parameters)) {
-            $("#results").html("<p>Could not interpret your input</p>");
-        } else {
-            var expectedValue = parameters;
-            var variance = parameters * (1 - parameters);
-            
-            $("#results").html("<dl class='dl-horizontal'>" +
-                "<dt>Expected Value</dt>" +
-                "<dd>" + expectedValue + "</dd>" +
-                "<dt>Variance</dt>" +
-                "<dd>" + variance + "</dd>" +
-            "</dl>");
-        }
-        
-        $("#results").show();
-        
-        return false;
+        var distribution = $("#distribution").val().trim();
+        var distributionCalculator = new CS109.DistributionCalculator(distribution);
+        var results = distributionCalculator.calculate();
+        var view = new CS109.ResultsView(results, $("#results"));
+        view.render();
     });
 });

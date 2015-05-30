@@ -1,9 +1,8 @@
 # cs109-distributions
-The website for the CS 109 Final Project Part 3. Calculates the expected value of Bernoulli Random Variables.
+The website for the CS 109 Final Project Part 3. Calculates the expected value
+and variance of Bernoulli and Binomial Random Variables.
 
 ## TODO
-* Variance
-* Binomial
 * Poisson
 * Geometric
 * Hypergeometric

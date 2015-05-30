@@ -17,31 +17,35 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="DistributionCalculator.js"></script>
+    <script src="ResultsView.js"></script>
     <script src="cs109-distributions.js"></script>
 </head>
 <body>
-    <div class="container" id="main-wrapper">
+    <div id="main-wrapper">
         <h1>CS 109 Distributions</h1>
         <noscript>This website requires JavaScript. Sorry.</noscript>
         <div class="row">
             <div class="col-md-4">
                 <form id="distribution-form">
                     <div class="form-group">
-                        <label class="control-label" for="parameters">Bernoulli p value</label>
+                        <label class="control-label" for="distribution">Enter the distribution you want to calculate</label>
                         <input
-                               id="parameters"
+                               id="distribution"
                                class="form-control"
-                               type="number"
-                               min="0"
-                               max="1"
-                               step="0.001"
+                               type="text"
                                aria-required="true"
                                required
                         >
                     </div>
                     <button type="submit" class="btn btn-primary">Calculate</button>
                 </form>
-                <div class="well well-sm" id="results"></div>
+                <div class="table-responsive" id="results">
+                  <table class="table">
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
             </div>
         </div>
     </div>
