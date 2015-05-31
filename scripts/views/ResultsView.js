@@ -5,64 +5,35 @@ var CS109 = (function(my){
         { key: "variance", name: "Variance" }
     ];
     
-    ERROR_MESSAGES = {
-        probability: function(paramName, format) {
-            return "<p>" + paramName + " must be a real number between 0 and 1 inclusive</p><p>Format: " + format + "</p>";
-        },
-        positive: function(paramName, format) {
-            return "<p>" + paramName + " must be a natural number greater than 0</p><p>Format: " + format + "</p>";
-        }
-    };
-    
-    // Taken from http://stackoverflow.com/a/10454560/830988
-    function countDecimals(num) {
-        var match = (''+num).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-        if (!match) { return 0; }
-        
-        return Math.max(
-            0,
-            // Number of digits right of decimal point.
-            (match[1] ? match[1].length : 0)
-            // Adjust for scientific notation.
-            - (match[2] ? +match[2] : 0)
-        );
-    }
-    
-    function round3(num) {
-        return (countDecimals(num) <= 3) ? num : num.toFixed(3);
-    }
-    
-    my.ResultsView = function(model, sel){
-        this.model = model;
-        this.sel = sel;
+    my.ResultsView = function(sel){
+        this.$sel = $(sel);
     };
     
     my.ResultsView.prototype._appendRow = function(heading, data) {
-        this.sel.find("tbody").append("<tr><th scope='row'>" + heading + "</th><td>" + data + "</td></tr>");
-    }
+        this.$sel.find("tbody").append("<tr><th scope='row'>" + heading + "</th><td>" + data + "</td></tr>");
+    };
     
-    my.ResultsView.prototype.render = function() {
-        $tbody = this.sel.find("tbody")
-        $tbody.html("");
+    my.ResultsView.prototype._renderError = function(error) {
+        return "<i class='math'>" + error.paramName + "</i> must be " + error.typeName + " " + error.limit;
+    };
+    
+    my.ResultsView.prototype.render = function(model) {
+        this.$sel.find("tbody").html("");
         
         for (var i = 0; i < RESULTS_HEADINGS.length; ++i) {
             var heading = RESULTS_HEADINGS[i];
-            var value = this.model[heading.key];
-            if (typeof value === "number") value = round3(value);
+            var value = model[heading.key];
+            if (typeof value === "number") value = my.round3(value);
             if (typeof value !== "undefined") this._appendRow(heading.name, value);
         }
         
-        if (this.model.error) {
-            var messageFn = ERROR_MESSAGES[this.model.error.type];
-            
-            if (messageFn) {
-                this._appendRow("Error", messageFn(this.model.error.paramName, this.model.format));
-            } else {
-                this._appendRow("Error", "<p>Could not parse input</p><p>Example: Ber(" + Math.random().toFixed(3) + ")</p>");
-            }
+        if (model.error === true) {
+            this._appendRow("Error", "Could not parse input");
+        } else if (model.error) {
+            this._appendRow("Error", this._renderError(model.error));
         }
         
-        $("#results").show();
+        this.$sel.show();
     };
     
     return my;

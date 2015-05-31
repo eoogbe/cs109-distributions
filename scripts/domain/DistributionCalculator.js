@@ -1,8 +1,9 @@
 var CS109 = (function(my){
     var DISTRIBUTIONS = {
-        ber: CS109.Bernoulli,
-        bin: CS109.Binomial,
-        poi: CS109.Poisson
+        ber: my.Bernoulli,
+        bin: my.Binomial,
+        poi: my.Poisson,
+        geo: my.Geometric
     };
     
     my.DistributionCalculator = function(input) {

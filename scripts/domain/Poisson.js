@@ -1,11 +1,17 @@
 var CS109 = (function(my){
     my.Poisson = function(parameters){
-        this.lambda = parseFloat(parameters[0].trim());
-        this.validator = new CS109.Validator([{
-            type: "positive",
-            paramName: "&lambda;",
-            value: this.lambda
-        }]);
+        if (parameters.length === 1) {
+            this.lambda = parseFloat(parameters[0].trim());
+            this.validator = new my.Validator([{
+                paramName: "&lambda;",
+                typeName: "at least",
+                value: this.lambda,
+                type: "atLeast",
+                limit: 0
+            }]);
+        } else {
+            this.lambda = NaN;
+        }
     };
     
     my.Poisson.create = function(parameters) {
@@ -20,6 +26,10 @@ var CS109 = (function(my){
         if (error) {
             result.error = error;
             result.format = "Poi(&lambda;)";
+            result.paramRules = [{
+                paramName: "&lambda;",
+                description: "positive real number"
+            }];
             return result;
         }
         

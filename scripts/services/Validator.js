@@ -1,10 +1,16 @@
 var CS109 = (function(my){
     VALIDATION_RULES = {
-        probability: function(p) {
-            return p < 0 || p > 1;
+        atLeast: function(limit, num) {
+            return num < limit;
         },
-        positive: function(n) {
-            return n < 0;
+        atMost: function(limit, num) {
+            return num > limit;
+        },
+        greaterThan: function(limit, num) {
+            return num <= limit;
+        },
+        lessThan: function(limit, num) {
+            return num >= limit;
         }
     };
     
@@ -15,7 +21,7 @@ var CS109 = (function(my){
     my.Validator.prototype.validate = function() {
         for (var i = 0; i < this.validationRules.length; ++i) {
             var rule = this.validationRules[i];
-            if (VALIDATION_RULES[rule.type](rule.value)) return rule;
+            if (VALIDATION_RULES[rule.type](rule.limit, rule.value)) return rule;
         }
         
         return false;

@@ -28,8 +28,33 @@ body {
     }
 }
 
+.math {
+    font-style: normal;
+    font-weight: bold;
+}
+
 #distribution-form {
     margin-bottom: 30px;
+}
+
+#example > p {
+    margin: 0;
+}
+
+#example > p:first-child {
+    margin-top: 7px;
+}
+
+#param-rules {
+    margin-bottom: 0;
+}
+
+#param-rules > dt {
+    width: 10px;
+}
+
+#param-rules > dd {
+    margin-left: 20px;
 }
 
 #results {

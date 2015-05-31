@@ -17,12 +17,15 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="scripts/services/round3.js"></script>
     <script src="scripts/services/Validator.js"></script>
     <script src="scripts/domain/Bernoulli.js"></script>
     <script src="scripts/domain/Binomial.js"></script>
     <script src="scripts/domain/Poisson.js"></script>
+    <script src="scripts/domain/Geometric.js"></script>
     <script src="scripts/domain/DistributionCalculator.js"></script>
     <script src="scripts/views/ResultsView.js"></script>
+    <script src="scripts/views/ExampleView.js"></script>
     <script src="scripts/cs109-distributions.js"></script>
 </head>
 <body>
@@ -30,7 +33,7 @@
         <h1>CS 109 Distributions</h1>
         <noscript>This website requires JavaScript. Sorry.</noscript>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <form id="distribution-form">
                     <div class="form-group">
                         <label class="control-label" for="distribution">Enter the distribution you want to calculate</label>
@@ -41,6 +44,7 @@
                                aria-required="true"
                                required
                         >
+                        <div id="example" class="help-block"></div>
                     </div>
                     <button type="submit" class="btn btn-primary">Calculate</button>
                 </form>
