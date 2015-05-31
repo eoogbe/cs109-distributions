@@ -4,8 +4,8 @@ var CS109 = (function(my){
             this.lambda = parseFloat(parameters[0].trim());
             this.validator = new my.Validator([{
                 paramName: "&lambda;",
-                typeName: "at least",
                 value: this.lambda,
+                typeName: "at least",
                 type: "atLeast",
                 limit: 0
             }]);

@@ -1,13 +1,13 @@
 var CS109 = (function(my){
-    my.Binomial = function(parameters){
+    my.NegativeBinomial = function(parameters){
         if (parameters.length === 2) {
-            this.n = parseInt(parameters[0].trim());
+            this.r = parseInt(parameters[0].trim());
             this.p = parseFloat(parameters[1].trim());
             this.validator = new my.Validator([{
-                paramName: "n",
-                typeName: "at least",
-                value: this.n,
-                type: "atLeast",
+                paramName: "r",
+                value: this.r,
+                typeName: "greater than",
+                type: "greaterThan",
                 limit: 0
             },
             {
@@ -19,31 +19,31 @@ var CS109 = (function(my){
             },
             {
                 paramName: "p",
-                typeName: "at most",
                 value: this.p,
+                typeName: "at most",
                 type: "atMost",
                 limit: 1
             }]);
         } else {
-            this.n = this.p = NaN;
+            this.r = this.p = NaN;
         }
     };
     
-    my.Binomial.create = function(parameters) {
-        return new my.Binomial(parameters);
+    my.NegativeBinomial.create = function(parameters) {
+        return new my.NegativeBinomial(parameters);
     };
     
-    my.Binomial.prototype.calculate = function() {
-        if (isNaN(this.p) || isNaN(this.n)) return { error: true };
-        var result = { parsedInput: "Bin(" + this.n + ", " + this.p + ")" };
+    my.NegativeBinomial.prototype.calculate = function() {
+        if (isNaN(this.p) || isNaN(this.r)) return { error: true };
+        var result = { parsedInput: "NegBin(" + this.r + ", " + this.p + ")" };
         
         var error = this.validator.validate();
         if (error) {
             result.error = error;
-            result.format = "Bin(n,p)";
+            result.format = "NegBin(r,p)";
             result.paramRules = [{
-                paramName: "n",
-                description: "positive integer"
+                paramName: "r",
+                description: "integer greater than 0"
             },
             {
                 paramName: "p",
@@ -52,8 +52,8 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = this.n * this.p;
-        result.variance = this.n * this.p * (1 - this.p);
+        result.expectedValue = this.r / this.p;
+        result.variance = this.r * (1 - this.p) / (this.p * this.p);
         return result;
     };
     

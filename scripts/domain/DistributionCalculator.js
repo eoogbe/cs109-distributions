@@ -4,7 +4,8 @@ var CS109 = (function(my){
         bin: my.Binomial,
         poi: my.Poisson,
         geo: my.Geometric,
-        hypg: my.Hypergeometric
+        hypg: my.Hypergeometric,
+        negbin: my.NegativeBinomial
     };
     
     my.DistributionCalculator = function(input) {

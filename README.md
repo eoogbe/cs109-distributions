@@ -8,6 +8,7 @@ and variance of Random Variables.
 * Poisson
 * Geometric
 * Hypergeometric
+* Negative Binomial
 
 ## TODO
-* Negative Binomial
+* PMF

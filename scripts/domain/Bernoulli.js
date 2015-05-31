@@ -4,9 +4,9 @@ var CS109 = (function(my){
             this.p = parseFloat(parameters[0].trim());
             this.validator = new my.Validator([{
                 paramName: "p",
-                typeName: "at least",
                 value: this.p,
-                type: "atLeast",
+                typeName: "greater than",
+                type: "greaterThan",
                 limit: 0
             },
             {
@@ -35,7 +35,7 @@ var CS109 = (function(my){
             result.format = "Ber(p)";
             result.paramRules = [{
                 paramName: "p",
-                description: "real number between 0 and 1 inclusive"
+                description: "real number between 0 and 1 exclusive"
             }];
             return result;
         }
