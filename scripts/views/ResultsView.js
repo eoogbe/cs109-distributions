@@ -1,9 +1,36 @@
 var CS109 = (function(my){
-    RESULTS_HEADINGS = [
-        { key: "parsedInput", name: "Input" },
-        { key: "expectedValue", name: "Expected Value" },
-        { key: "variance", name: "Variance" }
-    ];
+    var ROWS = [{
+        key: "parsedInput",
+        heading: "Input"
+    },
+    {
+        key: "expectedValue",
+        heading: "Expected Value"
+    },
+    {
+        key: "variance",
+        heading: "Variance"
+    },
+    {
+        key: "pmf",
+        heading: "Probability Mass Function",
+        func: function(pmf){
+            return "<math xmlns='http://www.w3.org/1998/Math/MathML'>" +
+                "<mi>P</mi><mfenced separators=''><mi>X</mi><mo>=</mo><mi>i</mi></mfenced><mo>=</mo>" + pmf +
+            "</math>";
+        }
+    },
+    {
+        key: "error",
+        heading: "Error",
+        func: function(error){
+            if (error === true) {
+                return "Could not parse input";
+            } else {
+                return "<i class='math'>" + error.paramName + "</i> must be " + error.typeName + " " + error.limit;
+            }
+        }
+    }];
     
     my.ResultsView = function(sel){
         this.$sel = $(sel);
@@ -20,19 +47,17 @@ var CS109 = (function(my){
     my.ResultsView.prototype.render = function(model) {
         this.$sel.find("tbody").html("");
         
-        for (var i = 0; i < RESULTS_HEADINGS.length; ++i) {
-            var heading = RESULTS_HEADINGS[i];
-            var value = model[heading.key];
-            if (typeof value === "number") value = my.round3(value);
-            if (typeof value !== "undefined") this._appendRow(heading.name, value);
+        for (var i = 0; i < ROWS.length; ++i) {
+            var row = ROWS[i];
+            var value = model[row.key];
+            
+            if (typeof value !== "undefined") {
+                var transformFn = row.func || function(data){ return data; };
+                this._appendRow(row.heading, transformFn(value));
+            }
         }
         
-        if (model.error === true) {
-            this._appendRow("Error", "Could not parse input");
-        } else if (model.error) {
-            this._appendRow("Error", this._renderError(model.error));
-        }
-        
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,this.$sel.get(0)]);
         this.$sel.show();
     };
     

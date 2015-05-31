@@ -40,8 +40,13 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = 1 / this.p;
-        result.variance = (1 - this.p) / (this.p * this.p);
+        result.expectedValue = my.round3(1 / this.p);
+        result.variance = my.round3((1 - this.p) / (this.p * this.p));
+        result.pmf = "<mn>" + my.round3(this.p) + "</mn>" +
+            "<msup>" +
+                "<mfenced><mn>" + my.round3(1 - this.p) + "</mn></mfenced>" +
+                "<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>" +
+            "</msup>";
         return result;
     };
     

@@ -64,8 +64,24 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = this.n * this.m / this.N;
-        result.variance = this.n * this.m * (this.N - this.n) * (this.N - this.m) / (this.N * this.N * (this.N - 1));
+        result.expectedValue = my.round3(this.n * this.m / this.N);
+        result.variance = my.round3(this.n * this.m * (this.N - this.n) * (this.N - this.m) / (this.N * this.N * (this.N - 1)));
+        result.pmf = "<mfrac>" +
+            "<mrow>" +
+                "<mfenced><mtable>" +
+                    "<mtr><mtd><mn>" + my.round3(this.m) + "</mn></mtd></mtr>" +
+                    "<mtr><mtd><mi>i</mi></mtd></mtr>" +
+                "</mtable></mfenced>" +
+                "<mfenced><mtable>" +
+                    "<mtr><mtd><mn>" + my.round3(this.N - this.m) + "</mn></mtd></mtr>" +
+                    "<mtr><mtd><mn>" + my.round3(this.n) + "</mn><mo>-</mo><mi>i</mi></mtd></mtr>" +
+                "</mtable></mfenced>" +
+            "</mrow>" +
+            "<mfenced><mtable>" +
+                "<mtr><mtd><mn>" + my.round3(this.n) + "</mn></mtd></mtr>" +
+                "<mtr><mtd><mi>i</mi></mtd></mtr>" +
+            "</mtable></mfenced>" +
+        "</mfrac>";
         return result;
     };
     

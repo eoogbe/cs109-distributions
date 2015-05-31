@@ -1,6 +1,6 @@
 # cs109-distributions
-The website for the CS 109 Final Project Part 3. Calculates the expected value
-and variance of Random Variables.
+The website for the CS 109 Final Project Part 3. Calculates the expected value,
+variance, and PMF of Random Variables.
 
 ## Distributions Supported
 * Bernoulli
@@ -11,4 +11,6 @@ and variance of Random Variables.
 * Negative Binomial
 
 ## TODO
-* PMF
+* Exponential
+* Uniform
+* Normal

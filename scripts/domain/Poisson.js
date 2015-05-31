@@ -33,8 +33,15 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = this.lambda;
-        result.variance = this.lambda;
+        result.expectedValue = my.round3(this.lambda);
+        result.variance = my.round3(this.lambda);
+        result.pmf = "<msup>" +
+            "<mi>e</mi><mn>" + my.round3(-this.lambda) + "</mn>" +
+        "</msup>" +
+        "<mfrac>" +
+            "<msup><mn>" + my.round3(this.lambda) + "</mn><mi>i</mi></msup>" +
+            "<mrow><mi>i</mi><mo>!</mo></mrow>" +
+        "</mfrac>";
         return result;
     };
     

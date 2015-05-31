@@ -40,8 +40,26 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = this.p;
-        result.variance = this.p * (1 - this.p);
+        result.expectedValue = my.round3(this.p);
+        result.variance = my.round3(this.p * (1 - this.p));
+        result.pmf = "<mfenced open='{' close='' separators=''>" +
+            "<mtable columnalign='left'>" +
+                "<mtr>" +
+                    "<mtd><mn>" + my.round3(this.p) + "</mn></mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo>" +
+                        "<mi>i</mi><mo>=</mo><mn>1</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>" + my.round3(1 - this.p) + "</mn></mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo>" +
+                        "<mi>i</mi><mo>=</mo><mn>0</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+            "</mtable>" +
+        "</mfenced>";
         return result;
     };
     

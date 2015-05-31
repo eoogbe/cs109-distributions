@@ -52,8 +52,17 @@ var CS109 = (function(my){
             return result;
         }
         
-        result.expectedValue = this.n * this.p;
-        result.variance = this.n * this.p * (1 - this.p);
+        result.expectedValue = my.round3(this.n * this.p);
+        result.variance = my.round3(this.n * this.p * (1 - this.p));
+        result.pmf = "<mfenced><mtable>" +
+            "<mtr><mtd><mn>" + this.n + "</mn></mtd></mtr>" +
+            "<mtr><mtd><mi>i</mi></mtd></mtr>" +
+        "</mtable></mfenced>" +
+        "<msup><mfenced><mn>" + my.round3(this.p) +"</mn></mfenced><mi>i</mi></msup>" +
+        "<msup>" +
+            "<mfenced><mn>" + my.round3(1 - this.p) +"</mn></mfenced>" +
+            "<mrow><mn>" + my.round3(this.n) + "</mn><mo>-</mo><mi>i</mi></mrow>" +
+        "</msup>";
         return result;
     };
     
