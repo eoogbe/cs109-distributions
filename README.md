@@ -7,7 +7,7 @@ and variance of Random Variables.
 * Binomial
 * Poisson
 * Geometric
+* Hypergeometric
 
 ## TODO
-* Hypergeometric
 * Negative Binomial

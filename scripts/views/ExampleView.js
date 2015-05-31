@@ -24,7 +24,7 @@ var CS109 = (function(my){
             this.nextExample();
         } else if (model.error) {
             var paramRulesHtml = this._getParamRulesHtml(model.paramRules);
-            this.$sel.html("<p>Format: " + model.format + "</p>" +
+            this.$sel.html("<p>Format: <i class='math'>" + model.format + "</i></p>" +
                 "<dl id='param-rules' class='dl-horizontal'>" + paramRulesHtml + "</dl>");
             this.$sel.show();
         } else {

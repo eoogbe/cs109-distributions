@@ -3,7 +3,8 @@ var CS109 = (function(my){
         ber: my.Bernoulli,
         bin: my.Binomial,
         poi: my.Poisson,
-        geo: my.Geometric
+        geo: my.Geometric,
+        hypg: my.Hypergeometric
     };
     
     my.DistributionCalculator = function(input) {
