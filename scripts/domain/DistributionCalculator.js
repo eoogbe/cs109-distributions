@@ -7,7 +7,8 @@ var CS109 = (function(my){
         hypg: my.Hypergeometric,
         negbin: my.NegativeBinomial,
         uni: my.Uniform,
-        n: my.Normal
+        n: my.Normal,
+        exp: my.Exponential
     };
     
     my.DistributionCalculator = function(input) {

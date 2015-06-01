@@ -11,6 +11,9 @@ variance, and PMF/PDF of Random Variables.
 * Negative Binomial
 * Uniform
 * Normal
+* Exponential
 
 ## TODO
-* Exponential
+* Multinomial
+* MGF
+* Actually comply with assignment requirements

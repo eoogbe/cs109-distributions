@@ -59,6 +59,7 @@ var CS109 = (function(my){
                     "<mtd><mn>0</mn></mtd>" +
                     "<mtd><mtext>otherwise</mtext></mtd>" +
                 "</mtr>" +
+            "</mtable>" +
         "</mfenced>";
         return result;
     };
