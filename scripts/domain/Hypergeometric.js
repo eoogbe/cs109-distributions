@@ -66,22 +66,39 @@ var CS109 = (function(my){
         
         result.expectedValue = my.round3(this.n * this.m / this.N);
         result.variance = my.round3(this.n * this.m * (this.N - this.n) * (this.N - this.m) / (this.N * this.N * (this.N - 1)));
-        result.pmf = "<mfrac>" +
-            "<mrow>" +
-                "<mfenced><mtable>" +
-                    "<mtr><mtd><mn>" + my.round3(this.m) + "</mn></mtd></mtr>" +
-                    "<mtr><mtd><mi>i</mi></mtd></mtr>" +
-                "</mtable></mfenced>" +
-                "<mfenced><mtable>" +
-                    "<mtr><mtd><mn>" + my.round3(this.N - this.m) + "</mn></mtd></mtr>" +
-                    "<mtr><mtd><mn>" + my.round3(this.n) + "</mn><mo>-</mo><mi>i</mi></mtd></mtr>" +
-                "</mtable></mfenced>" +
-            "</mrow>" +
-            "<mfenced><mtable>" +
-                "<mtr><mtd><mn>" + my.round3(this.n) + "</mn></mtd></mtr>" +
-                "<mtr><mtd><mi>i</mi></mtd></mtr>" +
-            "</mtable></mfenced>" +
-        "</mfrac>";
+        result.pmf = "<mfenced open='{' close='' separators=''>" +
+            "<mtable columnalign='left'>" +
+                "<mtr>" +
+                    "<mtd>" +
+                        "<mfrac>" +
+                            "<mrow>" +
+                                "<mfenced><mtable>" +
+                                    "<mtr><mtd><mn>" + this.m + "</mn></mtd></mtr>" +
+                                    "<mtr><mtd><mi>i</mi></mtd></mtr>" +
+                                "</mtable></mfenced>" +
+                                "<mfenced><mtable>" +
+                                    "<mtr><mtd><mn>" + (this.N - this.m) + "</mn></mtd></mtr>" +
+                                    "<mtr><mtd><mn>" + this.n + "</mn><mo>&minus;</mo><mi>i</mi></mtd></mtr>" +
+                                "</mtable></mfenced>" +
+                            "</mrow>" +
+                            "<mfenced><mtable>" +
+                                "<mtr><mtd><mn>" + this.n + "</mn></mtd></mtr>" +
+                                "<mtr><mtd><mi>i</mi></mtd></mtr>" +
+                            "</mtable></mfenced>" +
+                        "</mfrac>" +
+                    "</mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo>" +
+                        "<mn>" + Math.max(0, this.m + this.n - this.N) + "</mn><mo>&le;</mo>" +
+                        "<mi>i</mi><mo>&le;</mo><mn>" + Math.min(this.m, this.n) + "</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>0</mn></mtd>" +
+                    "<mtd><mtext>otherwise</mtext></mtd>" +
+                "</mtr>" +
+            "</mtable>" +
+        "</mfenced>";
         return result;
     };
     

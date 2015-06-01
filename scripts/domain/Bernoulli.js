@@ -27,7 +27,7 @@ var CS109 = (function(my){
     
     my.Bernoulli.prototype.calculate = function() {
         if (isNaN(this.p)) return { error: true };
-        var result = { parsedInput: "Ber(" + this.p + ")" };
+        var result = { parsedInput: "Ber(" + my.round3(this.p) + ")" };
         
         var error = this.validator.validate();
         if (error) {
@@ -46,18 +46,16 @@ var CS109 = (function(my){
             "<mtable columnalign='left'>" +
                 "<mtr>" +
                     "<mtd><mn>" + my.round3(this.p) + "</mn></mtd>" +
-                    "<mtd>" +
-                        "<mo>if</mo>" +
-                        "<mi>i</mi><mo>=</mo><mn>1</mn>" +
-                    "</mtd>" +
+                    "<mtd><mo>if</mo><mi>i</mi><mo>=</mo><mn>1</mn></mtd>" +
                 "</mtr>" +
                 "<mtr>" +
                     "<mtd><mn>" + my.round3(1 - this.p) + "</mn></mtd>" +
-                    "<mtd>" +
-                        "<mo>if</mo>" +
-                        "<mi>i</mi><mo>=</mo><mn>0</mn>" +
-                    "</mtd>" +
+                    "<mtd><mo>if</mo><mi>i</mi><mo>=</mo><mn>0</mn></mtd>" +
                 "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>0</mn></mtd>" +
+                    "<mtd><mtext>otherwise</mtext></mtd>" +
+                "</mtr>"
             "</mtable>" +
         "</mfenced>";
         return result;

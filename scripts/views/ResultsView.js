@@ -16,7 +16,16 @@ var CS109 = (function(my){
         heading: "Probability Mass Function",
         func: function(pmf){
             return "<math xmlns='http://www.w3.org/1998/Math/MathML'>" +
-                "<mi>P</mi><mfenced separators=''><mi>X</mi><mo>=</mo><mi>i</mi></mfenced><mo>=</mo>" + pmf +
+                "<mi>P</mi><mo>&ApplyFunction;</mo><mfenced separators=''><mi>X</mi><mo>=</mo><mi>i</mi></mfenced><mo>=</mo>" + pmf +
+            "</math>";
+        }
+    },
+    {
+        key: "pdf",
+        heading: "Probability Density Function",
+        func: function(pdf){
+            return "<math xmlns='http://www.w3.org/1998/Math/MathML'>" +
+                "<mi>f</mi><mo>&ApplyFunction;</mo><mfenced><mi>x</mi></mfenced><mo>=</mo>" + pdf +
             "</math>";
         }
     },

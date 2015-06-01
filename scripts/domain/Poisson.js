@@ -20,7 +20,7 @@ var CS109 = (function(my){
     
     my.Poisson.prototype.calculate = function() {
         if (isNaN(this.lambda)) return { error: true };
-        var result = { parsedInput: "Poi(" + this.lambda + ")" };
+        var result = { parsedInput: "Poi(" + my.round3(this.lambda) + ")" };
         
         var error = this.validator.validate();
         if (error) {
@@ -35,13 +35,33 @@ var CS109 = (function(my){
         
         result.expectedValue = my.round3(this.lambda);
         result.variance = my.round3(this.lambda);
-        result.pmf = "<msup>" +
-            "<mi>e</mi><mn>" + my.round3(-this.lambda) + "</mn>" +
-        "</msup>" +
-        "<mfrac>" +
-            "<msup><mn>" + my.round3(this.lambda) + "</mn><mi>i</mi></msup>" +
-            "<mrow><mi>i</mi><mo>!</mo></mrow>" +
-        "</mfrac>";
+        result.pmf = "<mfenced open='{' close='' separators=''>" +
+            "<mtable columnalign='left'>" +
+                "<mtr>" +
+                    "<mtd>" +
+                        "<msup>" +
+                            "<mi>e</mi>" +
+                            "<mn>" + my.round3(-this.lambda) + "</mn>" +
+                        "</msup>" +
+                        "<mo>&InvisibleTimes;</mo>" +
+                        "<mfrac>" +
+                            "<msup>" +
+                                "<mn>" + my.round3(this.lambda) + "</mn>" +
+                                "<mi>i</mi>" +
+                            "</msup>" +
+                            "<mrow><mi>i</mi><mo>!</mo></mrow>" +
+                        "</mfrac>" +
+                    "</mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo><mi>i</mi><mo>&ge;</mo><mn>0</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>0</mn></mtd>" +
+                    "<mtd><mtext>otherwise</mtext></mtd>" +
+                "</mtr>"
+            "</mtable>" +
+        "</mfenced>";
         return result;
     };
     

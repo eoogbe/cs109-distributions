@@ -27,7 +27,7 @@ var CS109 = (function(my){
     
     my.Geometric.prototype.calculate = function() {
         if (isNaN(this.p)) return { error: true };
-        var result = { parsedInput: "Geo(" + this.p + ")" };
+        var result = { parsedInput: "Geo(" + my.round3(this.p) + ")" };
         
         var error = this.validator.validate();
         if (error) {
@@ -42,11 +42,27 @@ var CS109 = (function(my){
         
         result.expectedValue = my.round3(1 / this.p);
         result.variance = my.round3((1 - this.p) / (this.p * this.p));
-        result.pmf = "<mn>" + my.round3(this.p) + "</mn>" +
-            "<msup>" +
-                "<mfenced><mn>" + my.round3(1 - this.p) + "</mn></mfenced>" +
-                "<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>" +
-            "</msup>";
+        result.pmf = "<mfenced open='{' close='' separators=''>" +
+            "<mtable columnalign='left'>" +
+                "<mtr>" +
+                    "<mtd>" +
+                        "<mn>" + my.round3(this.p) + "</mn>" +
+                        "<mo>&InvisibleTimes;</mo>" +
+                        "<msup>" +
+                            "<mfenced><mn>" + my.round3(1 - this.p) + "</mn></mfenced>" +
+                            "<mrow><mi>i</mi><mo>-</mo><mn>1</mn></mrow>" +
+                        "</msup>" +
+                    "</mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo><mi>i</mi><mo>&gt;</mo><mn>0</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>0</mn></mtd>" +
+                    "<mtd><mtext>otherwise</mtext></mtd>" +
+                "</mtr>" +
+            "</mtable>" +
+        "</mfenced>";
         return result;
     };
     

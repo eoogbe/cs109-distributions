@@ -35,7 +35,7 @@ var CS109 = (function(my){
     
     my.NegativeBinomial.prototype.calculate = function() {
         if (isNaN(this.p) || isNaN(this.r)) return { error: true };
-        var result = { parsedInput: "NegBin(" + this.r + ", " + this.p + ")" };
+        var result = { parsedInput: "NegBin(" + this.r + ", " + my.round3(this.p) + ")" };
         
         var error = this.validator.validate();
         if (error) {
@@ -54,15 +54,32 @@ var CS109 = (function(my){
         
         result.expectedValue = my.round3(this.r / this.p);
         result.variance = my.round3(this.r * (1 - this.p) / (this.p * this.p));
-        result.pmf = "<mfenced><mtable>" +
-            "<mtr><mtd><mi>i</mi><mo>-</mo><mn>1</mn></mtd></mtr>" +
-            "<mtr><mtd><mn>" + my.round3(this.r - 1) + "</mn></mtd></mtr>" +
-        "</mtable></mfenced>" +
-        "<mn>" + my.round3(Math.pow(this.p, this.r)) +"</mn>" +
-        "<msup>" +
-            "<mfenced><mn>" + my.round3(1 - this.p) +"</mn></mfenced>" +
-            "<mrow><mi>i</mi><mo>-</mo><mn>" + my.round3(this.r) + "</mn></mrow>" +
-        "</msup>";
+        result.pmf = "<mfenced open='{' close='' separators=''>" +
+            "<mtable columnalign='left'>" +
+                "<mtr>" +
+                    "<mtd>" +
+                        "<mfenced><mtable>" +
+                            "<mtr><mtd><mi>i</mi><mo>&minus;</mo><mn>1</mn></mtd></mtr>" +
+                            "<mtr><mtd><mn>" + my.round3(this.r - 1) + "</mn></mtd></mtr>" +
+                        "</mtable></mfenced>" +
+                        "<mo>&InvisibleTimes;</mo>" +
+                        "<mn>" + my.round3(Math.pow(this.p, this.r)) +"</mn>" +
+                        "<mo>&InvisibleTimes;</mo>" +
+                        "<msup>" +
+                            "<mfenced><mn>" + my.round3(1 - this.p) +"</mn></mfenced>" +
+                            "<mrow><mi>i</mi><mo>&minus;</mo><mn>" + my.round3(this.r) + "</mn></mrow>" +
+                        "</msup>" +
+                    "</mtd>" +
+                    "<mtd>" +
+                        "<mo>if</mo><mi>i</mi><mo>&gt;</mo><mn>0</mn>" +
+                    "</mtd>" +
+                "</mtr>" +
+                "<mtr>" +
+                    "<mtd><mn>0</mn></mtd>" +
+                    "<mtd><mtext>otherwise</mtext></mtd>" +
+                "</mtr>" +
+            "</mtable>" +
+        "</mfenced>";
         return result;
     };
     
