@@ -51,7 +51,7 @@ var CS109 = (function(my){
                     "</mtd>" +
                     "<mtd>" +
                         "<mo>if</mo><mn>" + my.round3(this.alpha) + "</mn>" +
-                        "<mo>&le;</mo><mi>i</mi><mo>&le;</mo>" +
+                        "<mo>&le;</mo><mi>x</mi><mo>&le;</mo>" +
                         "<mn>" + my.round3(this.beta) + "</mn>" +
                     "</mtd>" +
                 "</mtr>" +

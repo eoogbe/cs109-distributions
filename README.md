@@ -10,7 +10,7 @@ variance, and PMF/PDF of Random Variables.
 * Hypergeometric
 * Negative Binomial
 * Uniform
+* Normal
 
 ## TODO
 * Exponential
-* Normal

@@ -6,7 +6,8 @@ var CS109 = (function(my){
         geo: my.Geometric,
         hypg: my.Hypergeometric,
         negbin: my.NegativeBinomial,
-        uni: my.Uniform
+        uni: my.Uniform,
+        n: my.Normal
     };
     
     my.DistributionCalculator = function(input) {
@@ -27,10 +28,11 @@ var CS109 = (function(my){
     };
     
     my.DistributionCalculator.prototype._getDistribution = function(){
+        var delimiter = this.input.indexOf("(") >= 0 ? "(" : " ";
+        var name = this.input.split(delimiter)[0];
+        
         for (var abbrev in DISTRIBUTIONS) {
-            if (this.input.startsWith(abbrev)) {
-                return [abbrev, DISTRIBUTIONS[abbrev]];
-            }
+            if (name === abbrev) return [abbrev, DISTRIBUTIONS[abbrev]];
         }
         
         return false;
